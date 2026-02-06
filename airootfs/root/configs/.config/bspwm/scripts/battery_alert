@@ -1,0 +1,23 @@
+#!/bin/sh
+
+low=10
+chargeSound=$HOME/Sounds/warning.wav
+
+while true; do
+
+  # If battery is plugged, do stuff
+  battery="/sys/class/power_supply/BAT0"
+  if [ -d $battery ]; then
+
+    capacity=$(cat $battery/capacity)
+    status=$(cat $battery/status)
+	
+    # If low and discharging
+    if [ "$status" = "Discharging" ] && [ $capacity -le $low ]; then
+      notify-send "Battery low: $capacity%"
+      paplay --volume=35500 $chargeSound &
+	fi
+  fi
+  sleep 60
+
+done

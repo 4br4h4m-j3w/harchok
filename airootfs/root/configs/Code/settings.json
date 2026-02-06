@@ -1,0 +1,89 @@
+{
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Iosevka Nerd Font",
+    "editor.fontSize": 16,
+    "files.autoSave": "afterDelay",
+    
+    "terminal.integrated.defaultProfile.linux": "fish",
+    
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.iconTheme": "material-icon-theme",
+
+    "material-icon-theme.hidesExplorerArrows": true,
+    "workbench.tree.indent": 20,
+
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+
+    "workbench.sideBar.location": "left",
+    "workbench.statusBar.visible": true,
+
+    "editor.scrollbar.vertical": "visible",
+    "editor.minimap.enabled": false,
+    "editor.occurrencesHighlight": "off",
+    "editor.overviewRulerBorder": false,
+
+    "breadcrumbs.enabled": false,
+
+    "excalidraw.workspaceLibraryPath": ".",
+    "excalidraw.theme": "dark",
+
+    "chat.commandCenter.enabled": false,
+    "workbench.layoutControl.enabled": false,
+
+    "window.customTitleBarVisibility": "never",
+    "window.titleBarStyle": "native",
+    "window.menuBarVisibility": "toggle",
+
+    "window.zoomLevel": 4,
+    "explorer.decorations.badges": false,
+
+    "todohighlight.isEnable": true,
+
+    "workbench.startupEditor": "none",
+    "workbench.tips.enabled": false,
+
+    "files.insertFinalNewline": true,
+    "editor.renderWhitespace": "none",
+
+    "extensions.ignoreRecommendations": true,
+    "update.mode": "none",
+
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "python.languageServer": "Pylance",
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[go]": {
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "golang.go"
+    },
+    "[javascript]": {
+        "editor.maxTokenizationLineLength": 2500,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[sql]": {
+        "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+        "editor.formatOnSave": true
+    },
+    "Prettier-SQL.SQLFlavourOverride": "postgresql",
+    "Prettier-SQL.keywordCase": "upper",
+    "git.confirmSync": false,
+    "go.toolsManagement.autoUpdate": true,
+    "workbench.secondarySideBar.defaultVisibility": "hidden"
+}

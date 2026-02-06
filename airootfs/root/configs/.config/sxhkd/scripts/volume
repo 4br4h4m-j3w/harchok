@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Get Volume
+get_volume() {
+	pamixer --allow-boost --get-volume
+}
+
+# Increase Volume
+up_volume() {
+	pamixer --allow-boost -i 5 --unmute
+}
+
+# Decrease Volume
+down_volume() {
+	pamixer --allow-boost -d 5 --unmute
+}
+
+# Toggle Mute
+toggle_mute() {
+    pamixer -t
+}
+
+# Execute accordingly
+if [[ "$1" == "--get" ]]; then
+	get_volume
+elif [[ "$1" == "--up" ]]; then
+	up_volume
+elif [[ "$1" == "--down" ]]; then
+        down_volume
+elif [[ "$1" == "--toggle" ]]; then
+	toggle_mute
+else
+	get_volume
+fi

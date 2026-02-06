@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Получаем статус микрофона и уровень громкости
+MUTED=$(pamixer --default-source --get-mute)
+
+# Устанавливаем иконки
+ICON_MUTED=" "     # Микрофон выключен
+ICON_ACTIVE=""    # Микрофон включен
+
+# Выводим соответствующую иконку + громкость
+if [ "$MUTED" = "true" ]; then
+    echo "$ICON_MUTED"
+else
+    echo "$ICON_ACTIVE"
+fi

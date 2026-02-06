@@ -1,0 +1,3 @@
+Arch Linux
+Run this command for fully automated installation:
+bash ./install.sh

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ "$1" == "--get" ]]; then
+	brightnessctl
+elif [[ "$1" == "--up" ]]; then
+	brightnessctl set 5%+ -q
+elif [[ "$1" == "--down" ]]; then
+	brightnessctl set 5%- -q
+else
+	brightnessctl
+fi

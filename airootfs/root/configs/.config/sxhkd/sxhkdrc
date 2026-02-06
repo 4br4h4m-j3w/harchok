@@ -1,0 +1,105 @@
+# Terminal emulator
+super + Return
+	alacritty
+
+# Sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Launch Applications
+super + shift + {b,f,p,t,c}
+	{google-chrome-stable --force-device-scale-factor=1.5, \
+	thunar, \
+	pavucontrol, \
+	Telegram, \
+	code,}
+
+# Music Player
+super + grave
+	alacritty -e ncmpcpp
+
+# Volume controls
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+    sh $HOME/.config/sxhkd/scripts/volume{ --up, --down, --toggle}
+
+# Play-Pause Buttons
+XF86AudioPlay
+	playerctl -p spotify play-pause
+
+XF86AudioPause
+	playerctl -p spotify play-pause
+
+XF86AudioNext
+	playerctl -p spotify next
+
+XF86AudioPrev
+	playerctl -p spotify previous
+
+# Microphone control
+XF86AudioMicMute
+    pamixer --default-source --toggle-mute
+
+# Brightness controls
+XF86MonBrightness{Up,Down}
+    sh $HOME/.config/sxhkd/scripts/brightness{ --up, --down}
+
+# Area screenshot
+Print
+    flameshot gui
+
+# Full screenshot
+shift + Print
+	flameshot full
+
+# Changer wallpaper
+super + w
+	sh $HOME/.config/bspwm/scripts/wallpaper
+
+# Rofi Launcher
+super + d
+	rofi -no-lazy-grab -show drun -modi drun -theme $HOME/.config/rofi/rofi.rasi
+	
+# Lockscreen
+ctrl + alt + l
+	betterlockscreen -l dim
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + c
+	bspc node -c
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,s,f}
+	bspc node -t {tiled,floating,fullscreen}
+
+#
+# focus/swap
+#
+
+# Switching between windows
+alt + Tab
+    bspc node -f next.local.!hidden.window
+
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'

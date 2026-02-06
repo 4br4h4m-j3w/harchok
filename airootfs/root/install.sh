@@ -116,6 +116,7 @@ echo "${hostname}" > /etc/hostname
 systemctl enable NetworkManager
 systemctl enable sddm
 systemctl enable docker
+systemctl enable bluetooth
 
 # Initramfs
 sed -i 's|^HOOKS=.*|HOOKS=(base systemd autodetect microcode modconf kms keyboard block sd-encrypt filesystems fsck)|' /etc/mkinitcpio.conf

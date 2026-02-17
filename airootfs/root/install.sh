@@ -45,14 +45,12 @@ mount /dev/mapper/crypt /mnt
 echo "Создаем subvolumes..."
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
-btrfs subvolume create /mnt/@snapshots
 umount /mnt
 
 echo "Перемонтируем по-правильному..."
 mount -o compress=zstd:5,noatime,commit=300,subvol=@ /dev/mapper/crypt /mnt
 mkdir -p /mnt/{home,.snapshots,boot}
 mount -o compress=zstd:5,noatime,commit=300,subvol=@home /dev/mapper/crypt /mnt/home
-mount -o compress=zstd:5,noatime,commit=300,subvol=@snapshots /dev/mapper/crypt /mnt/.snapshots
 mount "${device}p1" /mnt/boot
 
 echo "Устанавливаем основные пакеты..."

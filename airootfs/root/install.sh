@@ -67,7 +67,7 @@ pacstrap /mnt dunst feh flameshot lazydocker lsd network-manager-applet nm-conne
 pacstrap /mnt ttf-jetbrains-mono-nerd ttf-roboto zathura zathura-djvu zathura-pdf-mupdf  unrar unzip udiskie tmux \
     thunar-archive-plugin playerctl pamixer oculante jq file-roller fd dysk \
     cloc cava blueman bluez bluez-utils 7zip pipewire pipewire-alsa pipewire-audio \
-    pipewire-jack pipewire-pulse ruff go arandr kubectl
+    pipewire-jack pipewire-pulse ruff go arandr kubectl snapper snap-pac
 
 echo "Генерируем fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -159,6 +159,20 @@ chmod +x "/home/${username}/Code/install_vsix.sh"
 cd "/home/${username}/Code/"
 su - "$username" -c "./install_vsix.sh"
 cp ./settings.json "/home/${username}/.configs/Code/User/"
+
+snapper -c root create-config /
+sed -i 's|^NUMBER_LIMIT=.*|NUMBER_LIMIT="3-5"|' /etc/snapper/configs/root
+sed -i 's|^NUMBER_LIMIT_IMPORTANT=.*|NUMBER_LIMIT_IMPORTANT="3-5"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_CREATE=.*|TIMELINE_CREATE="no"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_MIN_AGE=.*|TIMELINE_MIN_AGE="0"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_LIMIT_HOURLY=.*|TIMELINE_LIMIT_HOURLY="0"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_LIMIT_DAILY=.*|TIMELINE_LIMIT_DAILY="0"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_LIMIT_WEEKLY=.*|TIMELINE_LIMIT_WEEKLY="0"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_LIMIT_MONTHLY=.*|TIMELINE_LIMIT_MONTHLY="0"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_LIMIT_QUARTERLY=.*|TIMELINE_LIMIT_QUARTERLY="0"|' /etc/snapper/configs/root
+sed -i 's|^TIMELINE_LIMIT_YEARLY=.*|TIMELINE_LIMIT_YEARLY="0"|' /etc/snapper/configs/root
+
+systemctl enable --now snapper-cleanup.timer
 EOF
 
 echo "Закрываем LUKS раздел..."

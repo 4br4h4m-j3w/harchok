@@ -4,7 +4,7 @@
 PARENT_BAR="mybar"
 PARENT_BAR_PID=$(pgrep -a "polybar" | grep "$PARENT_BAR" | cut -d" " -f1)
 PLAYER="spotify"
-FORMAT="{{ artist }} - {{ title }}"
+FORMAT="{{ title }}"
 
 # Sends $2 as message to all polybar PIDs that are part of $1
 update_hooks() {
@@ -12,6 +12,16 @@ update_hooks() {
     do
         polybar-msg -p "$id" hook spotify-play-pause $2 1>/dev/null 2>&1
     done < <(echo "$1")
+}
+
+truncate_str() {
+    local input="$1"
+    local max="$2"
+    if [ ${#input} -gt "$max" ]; then
+        echo "${input:0:$max}"
+    else
+        echo "$input"
+    fi
 }
 
 PLAYERCTL_STATUS=$(playerctl --player=$PLAYER status 2>/dev/null)
@@ -30,11 +40,11 @@ else
         echo "No music is playing"
     elif [ "$STATUS" = "Paused"  ]; then
         update_hooks "$PARENT_BAR_PID" 2
-        playerctl --player=$PLAYER metadata --format "$FORMAT"
+        playerctl --player=$PLAYER metadata --format "$FORMAT" | cut -c1-30
     elif [ "$STATUS" = "No player is running"  ]; then
         echo "Spotify"
     else
         update_hooks "$PARENT_BAR_PID" 1
-        playerctl --player=$PLAYER metadata --format "$FORMAT"
+        playerctl --player=$PLAYER metadata --format "$FORMAT" | cut -c1-30
     fi
 fi

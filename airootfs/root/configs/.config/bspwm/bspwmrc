@@ -6,7 +6,7 @@ xsetroot -cursor_name left_ptr
 xrandr --output DP-4 --mode 2560x1600 --rate 165 --primary
 
 # Layouts
-$HOME/.config/bspwm/scripts/change_language &
+#$HOME/.config/bspwm/scripts/change_language &
 
 # Polybar
 $HOME/.config/polybar/launch_polybar &
@@ -22,7 +22,10 @@ bspc config focus_follows_pointer true
 picom --config ~/.config/picom/picom.conf &
 
 # Wallpaper
-$HOME/.config/bspwm/scripts/wallpaper
+$HOME/.config/bspwm/scripts/wallpaper_changer &
 
 # Background scripts
 pgrep -x battery_alert > /dev/null || $HOME/.config/bspwm/scripts/battery_alert &
+
+# Japanese
+fcitx5 -d &
